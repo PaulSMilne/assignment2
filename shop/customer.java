@@ -5,12 +5,14 @@ public class Customer{
 
      private String name;
      private double cardFunds;
+     private double totalFunds;
      private BankCard card;
      private HashMap<BankCard, Double> paymentOptions;
 
      public Customer(String name){
           this.name = name;
           this.paymentOptions = new HashMap<BankCard, Double>();
+          this.totalFunds = 0;
      }
 
      public void setPaymentOptions(BankCard card, double cardFunds){
@@ -18,16 +20,17 @@ public class Customer{
           paymentOptions.put(card, availableFunds);
      }
 
-     public HashMap getPaymentOptions(){
+     public HashMap<BankCard, Double> getPaymentOptions(){
           return this.paymentOptions;
      }
 
-
-
-
-
-
-
+     public Double getTotalFunds(HashMap<BankCard, Double> cardMap){
+          Double sum = new Double(0.00);
+          for (Double cardSum : cardMap.values()){
+               sum += cardSum;
+          }
+          return sum;
+     }
 
 }
 
