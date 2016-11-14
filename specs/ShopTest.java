@@ -35,7 +35,9 @@ public class ShopTest {
 
      @Test
      public void canGetTotalShopFunds(){
-          assertEquals(0.00, shop.getTotalShopFunds(), 0);
+          shop.updateSales(500.00);
+          shop.updateRefunds(350.00);
+          assertEquals(150.00, shop.getTotalShopFunds(), 0);
      }
 
      @Test
@@ -49,4 +51,5 @@ public class ShopTest {
           Double newRefunds = shop.updateRefunds(350.00);
           assertEquals(350.00, newRefunds, 0);
      }
+
 }
