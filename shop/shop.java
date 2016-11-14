@@ -7,14 +7,14 @@ public class Shop{
      private double sales;
      private double refunds;
      private double totalShopFunds;
-     private ArrayList<CardType> acceptedCards;
+     //private ArrayList<CardType> acceptedCards;
 
      public Shop(String name){
           this.name = name;
           this.sales = 0.00;
           this.refunds = 0.00;
           this.totalShopFunds = 0.00;
-          this.acceptedCards = new ArrayList<CardType>();
+          //this.acceptedCards = new ArrayList<CardType>();
      }
 
      public String getName(){
