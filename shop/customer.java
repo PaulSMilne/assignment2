@@ -4,14 +4,23 @@ import java.util.*;
 public class Customer{
 
      private String name;
-     private double funds;
-     private Map paymentOptions;
+     private double cardFunds;
+     private BankCard card;
+     private HashMap<BankCard, Double> paymentOptions;
 
      public Customer(String name){
           this.name = name;
-          this.paymentOptions = new HashMap();
+          this.paymentOptions = new HashMap<BankCard, Double>();
      }
 
+     public void setPaymentOptions(BankCard card, double cardFunds){
+          Double availableFunds = new Double(cardFunds);
+          paymentOptions.put(card, availableFunds);
+     }
+
+     public HashMap getPaymentOptions(){
+          return this.paymentOptions;
+     }
 
 
 

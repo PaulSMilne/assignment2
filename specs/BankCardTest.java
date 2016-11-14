@@ -1,7 +1,7 @@
 import static org.junit.Assert.*;
 import org.junit.*;
 import shop.*;
-import behaviours.*;
+//import behaviours.*;
 
 
 public class BankCardTest {
