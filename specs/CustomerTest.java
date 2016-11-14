@@ -20,22 +20,28 @@ public class CustomerTest {
           customer = new Customer("Zippy");
           //paymentOptions = new HashMap<BankCard, Double>();
           totalFunds = 0;
+          customer.setPaymentOptions(card1, 100.00);
+          customer.setPaymentOptions(card2, 200.00);
      }
 
      @Test
      public void canAddCardToPaymentOptions(){
-          customer.setPaymentOptions(card1, 100.00);
-          customer.setPaymentOptions(card2, 200.00);
           HashMap<BankCard, Double> currentCards = customer.getPaymentOptions();
           assertEquals(2, currentCards.size());
      }
 
      @Test
      public void canAddCardFundsToGetTotalFunds(){
-          customer.setPaymentOptions(card1, 100.00);
-          customer.setPaymentOptions(card2, 200.00);
           HashMap<BankCard, Double> currentCards = customer.getPaymentOptions();
           Double totalFunds = customer.getTotalFunds(currentCards);
           assertEquals(300.00, totalFunds, 0);
+     }
+
+     @Test
+     public void canChangeFundsOnExistingCard(){
+          customer.setPaymentOptions(card1, 150.00);
+     HashMap<BankCard, Double> currentCards = customer.getPaymentOptions();
+     Double totalFunds = customer.getTotalFunds(currentCards);
+     assertEquals(350.00, totalFunds, 0);
      }
 }
