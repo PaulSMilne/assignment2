@@ -26,4 +26,10 @@ public class TransactionTest {
           String shopName = thisShop.getName();
           assertEquals("BearsRUrsus", shopName);
      }
+     @Test
+     public void canGetCustomerName(){
+          Customer thisCustomer = transaction.getCustomer();
+          String customerName = thisCustomer.getName();
+          assertEquals("Zippy", customerName);
+     }
 }

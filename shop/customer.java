@@ -15,6 +15,11 @@ public class Customer{
           this.totalFunds = 0;
      }
 
+     public String getName(){
+          return this.name;
+     }
+
+
      public void setPaymentOptions(BankCard card, double cardFunds){
           Double availableFunds = new Double(cardFunds);
           paymentOptions.put(card, availableFunds);
