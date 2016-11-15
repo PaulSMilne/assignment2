@@ -20,11 +20,17 @@ public class TransactionTest {
           shop = new Shop("BearsRUrsus");
           customer = new Customer("Zippy");
           card1 = new BankCard("Barclays", CardType.VISA_DEBIT);
+          card1.makeDefault();
           card2 = new BankCard("Bank of Scotland", CardType.MASTERCARD_CREDIT);
           customer.setPaymentOptions(card1, 10000.00);
           customer.setPaymentOptions(card2, 3000.00);
           transaction = new Transaction(1, customer, shop);
     }
+
+    // @Test
+    // public void canSetInstanceVariableInConstructorMethod(){
+    //       assertEquals(7, transaction.id);
+    // }
 
      @Test
      public void canGetShopName(){
@@ -48,14 +54,14 @@ public class TransactionTest {
           Double amount1 = new Double(499.99);
           Double amount2 = new Double(1499.99);
 
-          transaction.makeSale(card1, amount1);
-          transaction.makeSale(card2, amount2);
+          transaction.makeTransaction(card1, amount1, TransactionType.SALE);
+          transaction.makeTransaction(card2, amount2, TransactionType.SALE);
 
           HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
           Double newFunds = paymentOptions.get(card1);
           assertEquals(9500.01, newFunds, 0);
 
-          Double shopFunds = shop.getTotalShopFunds();
+          Double shopFunds = shop.getIncomeReport();
           assertEquals(1999.98, shopFunds, 0);
 
           Double salesFigures = shop.getSales();
@@ -70,11 +76,58 @@ public class TransactionTest {
 
           Double amount1 = new Double(499.99);
 
-          transaction.issueRefund(card1, amount1);
+          transaction.makeTransaction(card1, amount1, TransactionType.REFUND);
 
           HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
           Double card1Funds = paymentOptions.get(card1);
 
           assertEquals(10499.99, card1Funds, 0);
+     }
+
+     @Test
+     public void refundAddsToShopRefundFigures(){
+
+          Double amount1 = new Double(499.99);
+          Double amount2 = new Double(1499.99);
+
+          transaction.makeTransaction(card1, amount1, TransactionType.REFUND);
+
+          Double refundFigures = shop.getRefunds();
+
+          assertEquals(499.99, refundFigures, 0);
+     }
+
+     @Test
+     public void refundTakesFromTotalShopFunds(){
+
+          Double amount1 = new Double(499.99);
+          Double amount2 = new Double(1499.99);
+
+          transaction.makeTransaction(card1, amount1, TransactionType.SALE);
+          transaction.makeTransaction(card2, amount2, TransactionType.SALE);
+
+          transaction.makeTransaction(card1, amount1, TransactionType.REFUND);
+
+          Double shopFunds = shop.getIncomeReport();
+
+          assertEquals(1499.99, shopFunds, 0);
+
+     }
+
+     @Test
+     public void testIfCard1IsDefault(){
+          assertEquals(true, card1.defaultCard);
+     }
+
+     @Test
+     public void testIfCard2IsNotDefault(){
+          assertEquals(false, card2.defaultCard);
+     }
+
+     @Test
+     public void canExtractDefaultCardFromPaymentOptions(){
+          HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
+          BankCard useThisCard = transaction.findDefaultCard(paymentOptions);
+          assertEquals(card1, useThisCard);
      }
 }

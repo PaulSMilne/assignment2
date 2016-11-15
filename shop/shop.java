@@ -29,7 +29,7 @@ public class Shop{
           return this.refunds;
      }
 
-     public Double getTotalShopFunds(){
+     public Double getIncomeReport(){
           Double currentSales = getSales();
           Double currentRefunds = getRefunds();
           this.totalShopFunds = currentSales - currentRefunds;

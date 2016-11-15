@@ -36,4 +36,10 @@ public class BankCardTest {
 
           assertEquals("Barclays Visa Debit Card", name);
      }
+
+     @Test
+     public void canChangeDefaultState(){
+          bankCard.makeDefault();
+          assertEquals(true, bankCard.defaultCard);
+     }
 }

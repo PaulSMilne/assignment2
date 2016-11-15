@@ -10,7 +10,7 @@ public class ShopTest {
      Shop shop;
      Double sales;
      Double refunds;
-     Double totalShopFunds;
+    // Double totalShopFunds;
 
      @Before
      public void Before(){
@@ -57,7 +57,7 @@ public class ShopTest {
           shop.updateSales(500.00);
           shop.updateRefunds(350.00);
 
-          assertEquals(150.00, shop.getTotalShopFunds(), 0);
+          assertEquals(150.00, shop.getIncomeReport(), 0);
      }
 
 

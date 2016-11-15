@@ -19,7 +19,6 @@ public class Customer{
           return this.name;
      }
 
-
      public void setPaymentOptions(BankCard card, double cardFunds){
           Double availableFunds = new Double(cardFunds);
           paymentOptions.put(card, availableFunds);
