@@ -17,12 +17,16 @@ public class TransactionTest {
      public void Before(){
 
           shop = new Shop("BearsRUrsus");
+
           customer = new Customer("Zippy");
+          
           card1 = new BankCard("Barclays", CardType.VISA_DEBIT);
           card1.makeDefault();
           card2 = new BankCard("Bank of Scotland", CardType.MASTERCARD_CREDIT);
+          
           customer.setPaymentOptions(card1, 10000.00);
           customer.setPaymentOptions(card2, 3000.00);
+          
           transaction = new Transaction(1, customer, shop);
     }
 
@@ -55,14 +59,14 @@ public class TransactionTest {
           Double newFunds = paymentOptions.get(card1);
           assertEquals(9500.01, newFunds, 0);
 
-          Double shopFunds = shop.getIncomeReport();
-          assertEquals(1999.98, shopFunds, 0);
+          Double customerNewFunds = customer.getTotalFunds();
+          assertEquals(11000.02, customerNewFunds, 0);
 
           Double salesFigures = shop.getSales();
           assertEquals(1999.98, salesFigures, 0);
 
-          Double customerNewFunds = customer.getTotalFunds();
-          assertEquals(11000.02, customerNewFunds, 0);
+          Double shopFunds = shop.getIncomeReport();
+          assertEquals(1999.98, shopFunds, 0);
      }
 
      @Test
@@ -157,7 +161,7 @@ public class TransactionTest {
 
           HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
           Double newFunds = paymentOptions.get(card2);
-          
+
           assertEquals(2500.01, newFunds, 0);
      }
 }

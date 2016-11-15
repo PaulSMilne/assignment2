@@ -74,7 +74,7 @@ public class Transaction{
           
      }
      public BankCard findDefaultCard(HashMap<BankCard, Double> paymentOptions){
-          for (Map.Entry<BankCard, Double> entry : paymentOptions.entrySet()){
+          for (HashMap.Entry<BankCard, Double> entry : paymentOptions.entrySet()){
                BankCard card = entry.getKey();
                if (card.defaultCard == true){
                     return card;
