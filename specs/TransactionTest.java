@@ -11,7 +11,7 @@ public class TransactionTest {
      BankCard card1;
      BankCard card2;
      //Double amount;
-     HashMap<BankCard, Double> paymentOptions;
+     //HashMap<BankCard, Double> paymentOptions;
      Transaction transaction;
 
      @Before
@@ -23,7 +23,6 @@ public class TransactionTest {
           card2 = new BankCard("Bank of Scotland", CardType.MASTERCARD_CREDIT);
           customer.setPaymentOptions(card1, 10000.00);
           customer.setPaymentOptions(card2, 3000.00);
-          Double amount = new Double(500.00);
           transaction = new Transaction(1, customer, shop);
     }
 
@@ -41,10 +40,12 @@ public class TransactionTest {
      }
      @Test
      public void saleTakesCustomerFundsFromParticularCard(){
+          Double amount = new Double(500.00);
           transaction.makeSale(card1, amount);
+          HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
           Double newFunds = paymentOptions.get(card1);
-          assertEquals(500.00, newFunds, 0);
-
-
+          assertEquals(9500.00, newFunds, 0);
      }
+
+
 }
