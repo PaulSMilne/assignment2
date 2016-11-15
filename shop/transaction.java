@@ -8,7 +8,7 @@ public class Transaction{
      private Shop shop;
      private Double amount;
 
-     public Transaction(int id, Customer customer, Shop shop, double amount){
+     public Transaction(int id, Customer customer, Shop shop){
           this.id = id;
           this.customer = customer;
           this.shop = shop;
@@ -23,7 +23,7 @@ public class Transaction{
           return this.shop;
      }
 
-     public Double getAmount(){
-          return this.amount;
-     }
+     // public Double getAmount(){
+     //      return this.amount;
+     // }
 }

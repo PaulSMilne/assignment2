@@ -8,17 +8,24 @@ import shop.*;
 public class TransactionTest {
      Customer customer;
      Shop shop;
-     Double amount;
+     BankCard card1;
+     BankCard card2;
+     //Double amount;
+     HashMap<BankCard, Double> paymentOptions;
      Transaction transaction;
 
      @Before
      public void Before(){
 
-          customer = new Customer("Zippy");
           shop = new Shop("BearsRUrsus");
-          amount = new Double(500.00);
-          transaction = new Transaction(1, customer, shop, amount);
-     }
+          customer = new Customer("Zippy");
+          card1 = new BankCard("Barclays", CardType.VISA_DEBIT);
+          card2 = new BankCard("Bank of Scotland", CardType.MASTERCARD_CREDIT);
+          customer.setPaymentOptions(card1, 10000.00);
+          customer.setPaymentOptions(card2, 3000.00);
+          Double amount = new Double(500.00);
+          transaction = new Transaction(1, customer, shop);
+    }
 
      @Test
      public void canGetShopName(){
@@ -31,5 +38,13 @@ public class TransactionTest {
           Customer thisCustomer = transaction.getCustomer();
           String customerName = thisCustomer.getName();
           assertEquals("Zippy", customerName);
+     }
+     @Test
+     public void saleTakesCustomerFundsFromParticularCard(){
+          transaction.makeSale(card1, amount);
+          Double newFunds = paymentOptions.get(card1);
+          assertEquals(500.00, newFunds, 0);
+
+
      }
 }
