@@ -39,12 +39,20 @@ public class TransactionTest {
           assertEquals("Zippy", customerName);
      }
      @Test
-     public void saleTakesCustomerFundsFromParticularCard(){
-          Double amount = new Double(500.00);
-          transaction.makeSale(card1, amount);
+     public void saleTransfersCustomerFundsFromParticularCardToShop(){
+          Double amount1 = new Double(499.99);
+          Double amount2 = new Double(1499.99);
+          transaction.makeSale(card1, amount1);
+          transaction.makeSale(card2, amount2);
           HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
           Double newFunds = paymentOptions.get(card1);
-          assertEquals(9500.00, newFunds, 0);
+          assertEquals(9500.01, newFunds, 0);
+          Double shopFunds = shop.getTotalShopFunds();
+          assertEquals(1999.98, shopFunds, 0);
+          Double salesFigures = shop.getSales();
+          assertEquals(1999.98, salesFigures, 0);
+          Double customerNewFunds = customer.getTotalFunds();
+          assertEquals(11000.02, customerNewFunds, 0);
      }
 
 

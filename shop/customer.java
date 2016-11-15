@@ -29,9 +29,10 @@ public class Customer{
           return this.paymentOptions;
      }
 
-     public Double getTotalFunds(HashMap<BankCard, Double> cardMap){
+     public Double getTotalFunds(){
+          HashMap<BankCard, Double> currentCards = getPaymentOptions();
           Double sum = new Double(0.00);
-          for (Double cardSum : cardMap.values()){
+          for (Double cardSum : currentCards.values()){
                sum += cardSum;
           }
           return sum;

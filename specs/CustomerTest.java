@@ -10,7 +10,6 @@ public class CustomerTest {
      BankCard card1;
      BankCard card2;
      Customer customer;
-     HashMap<BankCard, Double> paymentOptions;
      double totalFunds;
 
      @Before
@@ -18,7 +17,6 @@ public class CustomerTest {
           card1 = new BankCard("Barclays", CardType.VISA_DEBIT);
           card2 = new BankCard("Bank of Scotland", CardType.MASTERCARD_CREDIT);
           customer = new Customer("Zippy");
-          //paymentOptions = new HashMap<BankCard, Double>();
           totalFunds = 0;
           customer.setPaymentOptions(card1, 100.00);
           customer.setPaymentOptions(card2, 200.00);
@@ -32,16 +30,14 @@ public class CustomerTest {
 
      @Test
      public void canAddCardFundsToGetTotalFunds(){
-          HashMap<BankCard, Double> currentCards = customer.getPaymentOptions();
-          Double totalFunds = customer.getTotalFunds(currentCards);
+          Double totalFunds = customer.getTotalFunds();
           assertEquals(300.00, totalFunds, 0);
      }
 
      @Test
      public void canChangeFundsOnExistingCard(){
           customer.setPaymentOptions(card1, 150.00);
-     HashMap<BankCard, Double> currentCards = customer.getPaymentOptions();
-     Double totalFunds = customer.getTotalFunds(currentCards);
-     assertEquals(350.00, totalFunds, 0);
+          Double totalFunds = customer.getTotalFunds();
+          assertEquals(350.00, totalFunds, 0);
      }
 }
