@@ -128,6 +128,27 @@ public class TransactionTest {
      public void canExtractDefaultCardFromPaymentOptions(){
           HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
           BankCard useThisCard = transaction.findDefaultCard(paymentOptions);
-          assertEquals(card1, useThisCard);
+          assertEquals(useThisCard.defaultCard, true);
+     }
+
+     @Test
+     public void cardInstanceVariableIsTrue(){
+          BankCard useThisCard = transaction.getCard();
+          assertEquals(true, useThisCard.defaultCard);
+     }
+
+     @Test
+     public void makeTransactionUsesDefaultCard(){
+          BankCard card = transaction.getCard();
+          Double amount1 = new Double(499.99);
+          transaction.makeTransaction(amount1, TransactionType.SALE);
+          HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
+          Double newFunds = paymentOptions.get(card);
+          assertEquals(9500.01, newFunds, 0);
+     }
+
+     @Test
+     public void makeTransactionUsesOptionalCard(){
+          
      }
 }
