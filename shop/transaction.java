@@ -29,4 +29,8 @@ public class Transaction{
           Double newCardFunds = currentCardFunds - amount;
           customer.setPaymentOptions(card, newCardFunds);
      }
+
+     public void issueRefund(BankCard card, Double amount){
+          shop.updateRefunds(amount)
+     }
 }

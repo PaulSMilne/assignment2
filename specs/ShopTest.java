@@ -19,7 +19,9 @@ public class ShopTest {
 
      @Test
      public void canGetName(){
+
           String name = shop.getName();
+
           assertEquals("BearsRUrsus", name);
      }
 
@@ -34,22 +36,29 @@ public class ShopTest {
      }
 
      @Test
-     public void canGetTotalShopFunds(){
-          shop.updateSales(500.00);
-          shop.updateRefunds(350.00);
-          assertEquals(150.00, shop.getTotalShopFunds(), 0);
-     }
-
-     @Test
      public void canUpdateSales(){
+
           Double newSales = shop.updateSales(500.00);
+          
           assertEquals(500.00, newSales, 0);
      }
 
      @Test
      public void canUpdateRefunds(){
+
           Double newRefunds = shop.updateRefunds(350.00);
+          
           assertEquals(350.00, newRefunds, 0);
      }
+ 
+     @Test
+     public void canGetTotalShopFunds(){
+
+          shop.updateSales(500.00);
+          shop.updateRefunds(350.00);
+
+          assertEquals(150.00, shop.getTotalShopFunds(), 0);
+     }
+
 
 }

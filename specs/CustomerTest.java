@@ -24,20 +24,27 @@ public class CustomerTest {
 
      @Test
      public void canAddCardToPaymentOptions(){
+
           HashMap<BankCard, Double> currentCards = customer.getPaymentOptions();
+
           assertEquals(2, currentCards.size());
      }
 
      @Test
      public void canAddCardFundsToGetTotalFunds(){
+
           Double totalFunds = customer.getTotalFunds();
+
           assertEquals(300.00, totalFunds, 0);
      }
 
      @Test
      public void canChangeFundsOnExistingCard(){
+
           customer.setPaymentOptions(card1, 150.00);
+
           Double totalFunds = customer.getTotalFunds();
+          
           assertEquals(350.00, totalFunds, 0);
      }
 }

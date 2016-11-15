@@ -15,19 +15,25 @@ public class BankCardTest {
 
      @Test
      public void canGetNameOfBank(){
+
           String bankName = bankCard.getBank();
+
           assertEquals("Barclays", bankName);
      }
 
      @Test
      public void canGetCardType(){
+
           CardType type = bankCard.getCardType();
+
           assertEquals(CardType.VISA_DEBIT, type);
      }
 
      @Test
      public void CanGetFullBankCardName(){
+
           String name = bankCard.getCardName();
+
           assertEquals("Barclays Visa Debit Card", name);
      }
 }
