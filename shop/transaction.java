@@ -29,7 +29,7 @@ public class Transaction{
           return this.card;
      }
 
-     public void makeTransaction(BankCard card, Double amount, TransactionType transaction){
+     public void makeTransaction(BankCard card, double amount, TransactionType transaction){
 
           HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
           Double currentCardFunds = paymentOptions.get(card);
@@ -38,22 +38,23 @@ public class Transaction{
 
                shop.updateSales(amount);
 
-               Double newCardFunds = currentCardFunds - amount;
+               double newCardFunds = currentCardFunds - amount;
                customer.setPaymentOptions(card, newCardFunds);
 
           } else if (transaction == TransactionType.REFUND) {
 
                shop.updateRefunds(amount);
 
-               Double newCardFunds = currentCardFunds + amount;
+               double newCardFunds = currentCardFunds + amount;
                customer.setPaymentOptions(card, newCardFunds);
           }
           
      }
 
-     public void makeTransaction(Double amount, TransactionType transaction){
+     public void makeTransaction(double amount, TransactionType transaction){
 
           BankCard card = getCard();
+
           HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
           Double currentCardFunds = paymentOptions.get(card);
 
@@ -61,14 +62,14 @@ public class Transaction{
 
                shop.updateSales(amount);
 
-               Double newCardFunds = currentCardFunds - amount;
+               double newCardFunds = currentCardFunds - amount;
                customer.setPaymentOptions(card, newCardFunds);
 
           } else if (transaction == TransactionType.REFUND) {
 
                shop.updateRefunds(amount);
 
-               Double newCardFunds = currentCardFunds + amount;
+               double newCardFunds = currentCardFunds + amount;
                customer.setPaymentOptions(card, newCardFunds);
           }
           
