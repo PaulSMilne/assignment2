@@ -10,8 +10,7 @@ public class TransactionTest {
      Shop shop;
      BankCard card1;
      BankCard card2;
-     //Double amount;
-     //HashMap<BankCard, Double> paymentOptions;
+
      Transaction transaction;
 
      @Before
@@ -26,11 +25,6 @@ public class TransactionTest {
           customer.setPaymentOptions(card2, 3000.00);
           transaction = new Transaction(1, customer, shop);
     }
-
-    // @Test
-    // public void canSetInstanceVariableInConstructorMethod(){
-    //       assertEquals(7, transaction.id);
-    // }
 
      @Test
      public void canGetShopName(){
@@ -126,8 +120,10 @@ public class TransactionTest {
 
      @Test
      public void canExtractDefaultCardFromPaymentOptions(){
+
           HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
           BankCard useThisCard = transaction.findDefaultCard(paymentOptions);
+
           assertEquals(useThisCard.defaultCard, true);
      }
 
@@ -139,16 +135,29 @@ public class TransactionTest {
 
      @Test
      public void makeTransactionUsesDefaultCard(){
+
           BankCard card = transaction.getCard();
+
           Double amount1 = new Double(499.99);
+
           transaction.makeTransaction(amount1, TransactionType.SALE);
+
           HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
           Double newFunds = paymentOptions.get(card);
+
           assertEquals(9500.01, newFunds, 0);
      }
 
      @Test
      public void makeTransactionUsesOptionalCard(){
+
+          Double amount1 = new Double(499.99);
+
+          transaction.makeTransaction(card2, amount1, TransactionType.SALE);
+
+          HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
+          Double newFunds = paymentOptions.get(card2);
           
+          assertEquals(2500.01, newFunds, 0);
      }
 }

@@ -6,3 +6,11 @@ Tonight started coding some simple getters and setters, using Sublime rather tha
 
 I'm using an Enum for the CardType, eg VISA_DEBIT("Visa Debit Card"). The Card gets initialised with a bank name and  card type. The Customer adds a "limit" which will do a calculation with spending and receiving refunds to work out how many funds are available. That's the theory anyway.
 
+Tuesday afternoon: Doing the default card was a multi step process. 
+
+# I had to change my BankCard class to take a boolean argument to flag the card as a default card, which initiates as false. 
+# Then I wrote a method to set that variable as true. 
+# Then I wrote a method to find the card in a hash of payment options that has the flag set to true, and return that card. 
+# This method is in the Transaction constructor and returns this.card for the class. 
+# In my test I newed up the customer and his/her payment options and cards first, then when I created the new transaction there were values for this method to work with. 
+# Then I overloaded the makeTransaction method to take two different strings of parameters. If it includes a card, the card is used in the transaction. If it doesn't include a card, it finds uses this.card in the class constructure which is the true card in the hashmap of payment methods.
