@@ -29,13 +29,6 @@ public class BankCardTest {
           assertEquals(CardType.VISA_DEBIT, type);
      }
 
-     @Test
-     public void CanGetFullBankCardName(){
-
-          String name = bankCard.getCardName();
-
-          assertEquals("Barclays Visa Debit Card", name);
-     }
 
      @Test
      public void canChangeDefaultState(){
