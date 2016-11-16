@@ -37,4 +37,8 @@ after having tinkered to my satisfaction with my MVP code I have proceeded to ad
 
 I have created a StockItem class and refactored the Shop class to include a hashmap of stock items. 
 
-I wrote two new methods that tested out okay, to get the what is in the current stock hashmap, and to add items to the stock hashmap.
+I wrote two new methods that tested out okay, to get what is in the current stock hashmap, and to add items to the stock hashmap.
+
+**Wednesday 4.33
+
+I added a basket to the Customer class with functions to add and remove stock items. I then called these methods and passed the stock items from the transaction class. I also wrote equivalent items for the shop, to remove items or to update an existing item in case of a refund. So I consider that my MVP plus suggested extension. Job done.
