@@ -17,9 +17,16 @@ public class Shop{
 
      public String getName() { return this.name; }
 
-     public Double getSales(){ return this.sales; }
+     public Double getSales() { return this.sales; }
 
-     public Double getRefunds(){ return this.refunds; }
+     public Double getRefunds() { return this.refunds; }
+
+     public HashMap<StockItem, Integer> getStock() {return this.stock; }
+
+     public void addStock(StockItem item, int stockLevel){
+          Integer currentStockLevel = new Integer(stockLevel);
+          stock.put(item, currentStockLevel);
+     }
 
      public Double updateSales(double update){
           Double newSales = new Double(update);

@@ -10,11 +10,16 @@ public class ShopTest {
      Shop shop;
      Double sales;
      Double refunds;
-    // Double totalShopFunds;
+     StockItem inStock1;
+     StockItem inStock2;
+     HashMap<StockItem, Integer> stock;
 
      @Before
      public void Before(){
           shop = new Shop("BearsRUrsus");
+          inStock1 = new StockItem("Dancing Bear");
+          inStock2 = new StockItem("Fortune Telling Bear");
+
      }
 
      @Test
@@ -56,5 +61,19 @@ public class ShopTest {
           assertEquals(150.00, shop.getIncomeReport(), 0);
      }
 
+     @Test
+     public void canGetStockItems(){
+          HashMap<StockItem, Integer> stock = shop.getStock();
+          assertEquals(0, stock.size());
+
+     }
+
+     @Test
+     public void canAddStockItems(){
+          shop.addStock(inStock1, 3);
+          shop.addStock(inStock2, 2);
+          HashMap<StockItem, Integer> stock = shop.getStock();
+          assertEquals(2, stock.size());
+     }
 
 }
