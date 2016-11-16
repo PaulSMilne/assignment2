@@ -18,3 +18,7 @@ Tuesday afternoon: Doing the default card was a multi step process.
 Wednesday morning. I'm revisitig the code I've done to see if I can move some of the heavy lifting from the Transaction class to the Customer class.
 
 Created a refactor branch to investigate possible reworking of my code.
+
+Wednesday elevenses: Have refactored the code to move the card maths from the transaction page to the customer page. The transaction page now calls the customer method which makes payments (takes money away from) or receives refunds (adds money to) from/to a particular card. 
+
+Then I further refactored to give the work of finding the current funds on a card to a separate customer method.
