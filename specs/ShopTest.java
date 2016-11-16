@@ -81,8 +81,24 @@ public class ShopTest {
           shop.addStock(inStock1, 3);
           shop.sellItem(inStock1);
           HashMap<StockItem, Integer> itemsInStock = shop.getStock();
-          int dancingBearsInStock = itemsInStock.get("Dancing Bear");
+          int dancingBearsInStock = itemsInStock.get(inStock1);
           assertEquals(2, dancingBearsInStock);
      }
 
+     @Test
+     public void returnsStringIfNoStockLeft(){
+          shop.addStock(inStock1, 1);
+          String message1 = shop.sellItem(inStock1);
+          assertEquals("This item is in stock", message1);
+
+          HashMap<StockItem, Integer> itemsInStock = shop.getStock();
+          int dancingBearsInStock = itemsInStock.get(inStock1);
+          assertEquals(0, dancingBearsInStock);
+
+          String message2 = shop.sellItem(inStock1);
+          HashMap<StockItem, Integer> currentItemsInStock = shop.getStock();
+          int currentDancingBearsInStock = currentItemsInStock.get(inStock1);
+          assertEquals("This item is out of stock.", message2);
+          assertEquals(0, currentDancingBearsInStock);
+      }
 }

@@ -28,6 +28,16 @@ public class Shop{
           stock.put(item, currentStockLevel);
      }
 
+     public String sellItem(StockItem item){
+          if (stock.get(item) == 0) {
+               return "This item is out of stock.";
+          }
+          int currentStockLevel = stock.get(item);
+          currentStockLevel -= 1;
+          addStock(item, currentStockLevel);
+          return "This item is in stock";
+     }
+
      public Double updateSales(double update){
           Double newSales = new Double(update);
           Double currentSales = getSales();
