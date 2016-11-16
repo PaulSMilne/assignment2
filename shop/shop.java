@@ -6,13 +6,13 @@ public class Shop{
      private String name;
      private Double sales;
      private Double refunds;
-     //private Double totalShopFunds;
+     private HashMap<StockItem, Integer> stock;
 
      public Shop(String name){
           this.name = name;
           this.sales = new Double(0.00);
           this.refunds = new Double(0.00);
-          //this.totalShopFunds = new Double(0.00);
+          this.stock = new HashMap<StockItem, Integer>();
      }
 
      public String getName() { return this.name; }
