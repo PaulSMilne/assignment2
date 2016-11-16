@@ -19,6 +19,11 @@ public class Customer{
 
      public ArrayList<StockItem> getBasket() { return this.basket; }
 
+     public void addToBasket(StockItem item){
+          basket.add(item);
+     }
+
+
      public void setPaymentOptions(BankCard card, double cardFunds){
           Double availableFunds = new Double(cardFunds);
           paymentOptions.put(card, availableFunds);

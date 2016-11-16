@@ -11,15 +11,18 @@ public class CustomerTest {
      BankCard card2;
      Customer customer;
      double totalFunds;
+     StockItem stockItem;
 
      @Before
      public void before(){
           card1 = new BankCard("Barclays", CardType.VISA_DEBIT);
           card2 = new BankCard("Bank of Scotland", CardType.MASTERCARD_CREDIT);
+          stockItem = new StockItem("Dancing Bear");
           customer = new Customer("Zippy");
           totalFunds = 0;
           customer.setPaymentOptions(card1, 100.00);
           customer.setPaymentOptions(card2, 200.00);
+
      }
 
      @Test
@@ -43,5 +46,12 @@ public class CustomerTest {
      @Test
      public void canGetBasketItems(){
           assertEquals(0, customer.getBasket().size());
+     }
+
+     @Test
+     public void canAddItemsToBasket(){
+          customer.addToBasket(stockItem);
+          assertEquals(1, customer.getBasket().size());
+          assertEquals(["Dancing Bear"], customer.getBasket());
      }
 }
