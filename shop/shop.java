@@ -28,6 +28,13 @@ public class Shop{
           stock.put(item, currentStockLevel);
      }
 
+     public void updateStock(StockItem item, int number){
+          HashMap<StockItem, Integer> currentStock = getStock();
+          int currentStockLevelOfItem = currentStock.get(item);
+          currentStockLevelOfItem += number;
+          addStock(item, currentStockLevelOfItem);
+     }
+
      public String sellItem(StockItem item){
           if (stock.get(item) == 0) {
                return "This item is out of stock.";

@@ -29,32 +29,33 @@ public class Transaction{
 // to use the default card if no card is passed in 
 // the method signature.
 
-     public void makeTransaction(double amount, TransactionType transaction){
-
+     public void makeTransaction(StockItem purchase, double amount, TransactionType transaction){
           BankCard card = getDefaultCard();
 
           if (transaction == TransactionType.SALE){
-
                shop.updateSales(amount);
+               shop.sellItem(purchase);
                customer.makePayment(card, amount);
+               customer.addToBasket(purchase);
 
           } else if (transaction == TransactionType.REFUND) {
-
                shop.updateRefunds(amount);
+               shop.updateStock(purchase, 1);
                customer.receiveRefund(card, amount);
           }
      }
 
-     public void makeTransaction(BankCard card, double amount, TransactionType transaction){
+     public void makeTransaction(BankCard card, StockItem purchase, double amount, TransactionType transaction){
 
           if (transaction == TransactionType.SALE){
-
                shop.updateSales(amount);
+               shop.sellItem(purchase);
                customer.makePayment(card, amount);
-
+               customer.addToBasket(purchase);
+               
           } else if (transaction == TransactionType.REFUND) {
-
                shop.updateRefunds(amount);
+               shop.updateStock(purchase, 1);
                customer.receiveRefund(card, amount);
           }
      }
