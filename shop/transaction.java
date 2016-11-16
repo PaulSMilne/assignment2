@@ -38,13 +38,12 @@ public class Transaction{
                customer.makePayment(card, amount);
 
           } 
-          // else if (transaction == TransactionType.REFUND) {
+          else if (transaction == TransactionType.REFUND) {
 
-          //      shop.updateRefunds(amount);
+               shop.updateRefunds(amount);
 
-          //      double newCardFunds = currentCardFunds + amount;
-          //      customer.setPaymentOptions(card, newCardFunds);
-          // }
+               customer.receiveRefund(card, amount);
+          }
           
      }
 
@@ -59,13 +58,12 @@ public class Transaction{
                customer.makePayment(card, amount);
 
           } 
-          // else if (transaction == TransactionType.REFUND) {
+          else if (transaction == TransactionType.REFUND) {
 
-          //      shop.updateRefunds(amount);
+               shop.updateRefunds(amount);
 
-          //      double newCardFunds = currentCardFunds + amount;
-          //      customer.setPaymentOptions(card, newCardFunds);
-          // }
+               customer.receiveRefund(card, amount);
+          }
           
      }
      public BankCard findDefaultCard(HashMap<BankCard, Double> paymentOptions){

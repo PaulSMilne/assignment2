@@ -41,4 +41,13 @@ public class Customer{
           Double newCardFunds = currentCardFunds - amount;
           setPaymentOptions(card, newCardFunds);
      }
+
+     public void receiveRefund(BankCard card, double amount){
+          HashMap<BankCard, Double> paymentOptions = getPaymentOptions();
+          Double currentCardFunds = paymentOptions.get(card);
+          Double newCardFunds = currentCardFunds + amount;
+          setPaymentOptions(card, newCardFunds);
+     }
+
+
 }

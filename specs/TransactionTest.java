@@ -137,6 +137,33 @@ public class TransactionTest {
      //      assertEquals(true, useThisCard.defaultCard);
      // }
 
+     // @Test
+     // public void makeTransactionUsesDefaultCard(){
+
+     //      BankCard card = transaction.getDefaultCard();
+
+     //      Double amount1 = new Double(499.99);
+
+     //      transaction.makeTransaction(amount1, TransactionType.SALE);
+
+     //      HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
+     //      Double newFunds = paymentOptions.get(card);
+
+     //      assertEquals(9500.01, newFunds, 0);
+     // }
+
+     // @Test
+     // public void makeTransactionUsesOptionalCard(){
+
+     //      Double amount1 = new Double(499.99);
+
+     //      transaction.makeTransaction(card2, amount1, TransactionType.SALE);
+
+     //      HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
+     //      Double newFunds = paymentOptions.get(card2);
+
+     //      assertEquals(2500.01, newFunds, 0);
+     // }
      @Test
      public void makeTransactionUsesDefaultCard(){
 
@@ -144,12 +171,12 @@ public class TransactionTest {
 
           Double amount1 = new Double(499.99);
 
-          transaction.makeTransaction(amount1, TransactionType.SALE);
+          transaction.makeTransaction(amount1, TransactionType.REFUND);
 
           HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
           Double newFunds = paymentOptions.get(card);
 
-          assertEquals(9500.01, newFunds, 0);
+          assertEquals(10499.99, newFunds, 0);
      }
 
      @Test
@@ -157,11 +184,11 @@ public class TransactionTest {
 
           Double amount1 = new Double(499.99);
 
-          transaction.makeTransaction(card2, amount1, TransactionType.SALE);
+          transaction.makeTransaction(card2, amount1, TransactionType.REFUND);
 
           HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
           Double newFunds = paymentOptions.get(card2);
 
-          assertEquals(2500.01, newFunds, 0);
+          assertEquals(3499.99, newFunds, 0);
      }
 }
