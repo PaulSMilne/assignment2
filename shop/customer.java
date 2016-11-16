@@ -23,11 +23,6 @@ public class Customer{
           basket.add(item);
      }
 
-     public void removeFromBasket(StockItem item){
-          int itemIndex = basket.indexOf(item);
-          basket.remove(itemIndex);
-     }
-
 
      public void setPaymentOptions(BankCard card, double cardFunds){
           Double availableFunds = new Double(cardFunds);
