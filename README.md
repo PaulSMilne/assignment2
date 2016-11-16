@@ -16,3 +16,5 @@ Tuesday afternoon: Doing the default card was a multi step process.
 6. Then I overloaded the makeTransaction method to take two different strings of parameters. If it includes a card, the card is used in the transaction. If it doesn't include a card, it finds uses this.card in the class constructure which is the true card in the hashmap of payment methods.
 
 Wednesday morning. I'm revisitig the code I've done to see if I can move some of the heavy lifting from the Transaction class to the Customer class.
+
+Created a refactor branch to investigate possible reworking of my code.
