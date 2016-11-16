@@ -30,22 +30,22 @@ public class TransactionTest {
           transaction = new Transaction(1, customer, shop);
     }
 
-     @Test
-     public void canGetShopName(){
+     // @Test
+     // public void canGetShopName(){
 
-          Shop thisShop = transaction.getShop();
-          String shopName = thisShop.getName();
+     //      Shop thisShop = transaction.getShop();
+     //      String shopName = thisShop.getName();
 
-          assertEquals("BearsRUrsus", shopName);
-     }
-     @Test
-     public void canGetCustomerName(){
+     //      assertEquals("BearsRUrsus", shopName);
+     // }
+     // @Test
+     // public void canGetCustomerName(){
 
-          Customer thisCustomer = transaction.getCustomer();
-          String customerName = thisCustomer.getName();
+     //      Customer thisCustomer = transaction.getCustomer();
+     //      String customerName = thisCustomer.getName();
 
-          assertEquals("Zippy", customerName);
-     }
+     //      assertEquals("Zippy", customerName);
+     // }
      @Test
      public void saleTransfersCustomerFundsFromParticularCardToShop(){
 
@@ -133,14 +133,14 @@ public class TransactionTest {
 
      @Test
      public void cardInstanceVariableIsTrue(){
-          BankCard useThisCard = transaction.getCard();
+          BankCard useThisCard = transaction.getDefaultCard();
           assertEquals(true, useThisCard.defaultCard);
      }
 
      @Test
      public void makeTransactionUsesDefaultCard(){
 
-          BankCard card = transaction.getCard();
+          BankCard card = transaction.getDefaultCard();
 
           Double amount1 = new Double(499.99);
 

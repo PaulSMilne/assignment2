@@ -10,22 +10,22 @@ public class Transaction{
 
      public Transaction(int id, Customer customer, Shop shop){
           HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
-          BankCard useThisCard = findDefaultCard(paymentOptions);
+          BankCard defaultCard = findDefaultCard(paymentOptions);
           this.id = id;
           this.customer = customer;
           this.shop = shop;
-          this.card = useThisCard;
+          this.card = defaultCard;
      }
 
-     public Customer getCustomer(){
-          return this.customer;
-     }
+     // public Customer customer(){
+     //      return this.customer;
+     // }
 
-     public Shop getShop(){
-          return this.shop;
-     }
+     // public Shop getShop(){
+     //      return this.shop;
+     // }
 
-     public BankCard getCard(){
+     public BankCard getDefaultCard(){
           return this.card;
      }
 
@@ -53,7 +53,7 @@ public class Transaction{
 
      public void makeTransaction(double amount, TransactionType transaction){
 
-          BankCard card = getCard();
+          BankCard card = getDefaultCard();
 
           HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
           Double currentCardFunds = paymentOptions.get(card);

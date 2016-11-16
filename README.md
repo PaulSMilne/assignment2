@@ -14,3 +14,5 @@ Tuesday afternoon: Doing the default card was a multi step process.
 4. This method is in the Transaction constructor and returns this.card for the class. 
 5. In my test I newed up the customer and his/her payment options and cards first, then when I created the new transaction there were values for this method to work with. 
 6. Then I overloaded the makeTransaction method to take two different strings of parameters. If it includes a card, the card is used in the transaction. If it doesn't include a card, it finds uses this.card in the class constructure which is the true card in the hashmap of payment methods.
+
+Wednesday morning. I'm revisitig the code I've done to see if I can move some of the heavy lifting from the Transaction class to the Customer class.
