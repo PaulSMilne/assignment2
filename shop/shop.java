@@ -6,33 +6,20 @@ public class Shop{
      private String name;
      private Double sales;
      private Double refunds;
-     private Double totalShopFunds;
+     //private Double totalShopFunds;
 
      public Shop(String name){
           this.name = name;
           this.sales = new Double(0.00);
           this.refunds = new Double(0.00);
-          this.totalShopFunds = new Double(0.00);
+          //this.totalShopFunds = new Double(0.00);
      }
 
-     public String getName(){
-          return this.name;
-     }
+     public String getName() { return this.name; }
 
-     public Double getSales(){
-          return this.sales;
-     }
+     public Double getSales(){ return this.sales; }
 
-     public Double getRefunds(){
-          return this.refunds;
-     }
-
-     public Double getIncomeReport(){
-          Double currentSales = getSales();
-          Double currentRefunds = getRefunds();
-          this.totalShopFunds = currentSales - currentRefunds;
-          return this.totalShopFunds;
-     }
+     public Double getRefunds(){ return this.refunds; }
 
      public Double updateSales(double update){
           Double newSales = new Double(update);
@@ -48,5 +35,10 @@ public class Shop{
           return this.refunds;
      }
 
-
+     public Double getIncomeReport(){
+          Double currentSales = getSales();
+          Double currentRefunds = getRefunds();
+          Double totalIncome = currentSales - currentRefunds;
+          return totalIncome;
+     }
 }    

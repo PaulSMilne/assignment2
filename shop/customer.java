@@ -44,6 +44,4 @@ public class Customer{
           currentCardFunds += amount;
           setPaymentOptions(card, currentCardFunds);
      }
-
-
 }
