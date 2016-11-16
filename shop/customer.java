@@ -37,14 +37,14 @@ public class Customer{
 
      public void makePayment(BankCard card, double amount){
           Double currentCardFunds = getCurrentCardFunds(card);
-          Double newCardFunds = currentCardFunds - amount;
-          setPaymentOptions(card, newCardFunds);
+          currentCardFunds -= amount;
+          setPaymentOptions(card, currentCardFunds);
      }
 
      public void receiveRefund(BankCard card, double amount){
           Double currentCardFunds = getCurrentCardFunds(card);
-          Double newCardFunds = currentCardFunds + amount;
-          setPaymentOptions(card, newCardFunds);
+          currentCardFunds += amount;
+          setPaymentOptions(card, currentCardFunds);
      }
 
 
