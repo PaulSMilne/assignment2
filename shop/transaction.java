@@ -17,6 +17,10 @@ public class Transaction{
 
      public BankCard getDefaultCard() {return this.card;}
 
+// OVERLOAD makeTransaction method to take a bank card or 
+// to use the default card if no card is passed in 
+// the method signature.
+
      public void makeTransaction(BankCard card, double amount, TransactionType transaction){
 
           if (transaction == TransactionType.SALE){
