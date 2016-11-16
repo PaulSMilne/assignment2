@@ -76,4 +76,13 @@ public class ShopTest {
           assertEquals(2, stock.size());
      }
 
+     @Test
+     public void canRemoveAnItemOfStock(){
+          shop.addStock(inStock1, 3);
+          shop.sellItem(inStock1);
+          HashMap<StockItem, Integer> itemsInStock = shop.getStock();
+          int dancingBearsInStock = itemsInStock.get("Dancing Bear");
+          assertEquals(2, dancingBearsInStock);
+     }
+
 }

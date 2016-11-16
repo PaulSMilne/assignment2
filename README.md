@@ -21,7 +21,7 @@ Doing the default card was a multi step process.
 
 **Wednesday morning
 
-I'm revisitig the code I've done to see if I can move some of the heavy lifting from the Transaction class to the Customer class.
+I'm revisiting the code I've done to see if I can move some of the heavy lifting from the Transaction class to the Customer class.
 
 Created a refactor branch to investigate possible reworking of my code.
 

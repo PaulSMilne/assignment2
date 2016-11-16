@@ -52,6 +52,5 @@ public class CustomerTest {
      public void canAddItemsToBasket(){
           customer.addToBasket(stockItem);
           assertEquals(1, customer.getBasket().size());
-          assertEquals(["Dancing Bear"], customer.getBasket());
      }
 }
