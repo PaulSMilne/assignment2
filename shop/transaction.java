@@ -31,23 +31,20 @@ public class Transaction{
 
      public void makeTransaction(BankCard card, double amount, TransactionType transaction){
 
-          HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
-          Double currentCardFunds = paymentOptions.get(card);
-
           if (transaction == TransactionType.SALE){
 
                shop.updateSales(amount);
+ 
+               customer.makePayment(card, amount);
 
-               double newCardFunds = currentCardFunds - amount;
-               customer.setPaymentOptions(card, newCardFunds);
+          } 
+          // else if (transaction == TransactionType.REFUND) {
 
-          } else if (transaction == TransactionType.REFUND) {
+          //      shop.updateRefunds(amount);
 
-               shop.updateRefunds(amount);
-
-               double newCardFunds = currentCardFunds + amount;
-               customer.setPaymentOptions(card, newCardFunds);
-          }
+          //      double newCardFunds = currentCardFunds + amount;
+          //      customer.setPaymentOptions(card, newCardFunds);
+          // }
           
      }
 
@@ -55,23 +52,20 @@ public class Transaction{
 
           BankCard card = getDefaultCard();
 
-          HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
-          Double currentCardFunds = paymentOptions.get(card);
-
           if (transaction == TransactionType.SALE){
 
                shop.updateSales(amount);
 
-               double newCardFunds = currentCardFunds - amount;
-               customer.setPaymentOptions(card, newCardFunds);
+               customer.makePayment(card, amount);
 
-          } else if (transaction == TransactionType.REFUND) {
+          } 
+          // else if (transaction == TransactionType.REFUND) {
 
-               shop.updateRefunds(amount);
+          //      shop.updateRefunds(amount);
 
-               double newCardFunds = currentCardFunds + amount;
-               customer.setPaymentOptions(card, newCardFunds);
-          }
+          //      double newCardFunds = currentCardFunds + amount;
+          //      customer.setPaymentOptions(card, newCardFunds);
+          // }
           
      }
      public BankCard findDefaultCard(HashMap<BankCard, Double> paymentOptions){

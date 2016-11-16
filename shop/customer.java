@@ -34,4 +34,11 @@ public class Customer{
           }
           return sum;
      }
+
+     public void makePayment(BankCard card, double amount){
+          HashMap<BankCard, Double> paymentOptions = getPaymentOptions();
+          Double currentCardFunds = paymentOptions.get(card);
+          Double newCardFunds = currentCardFunds - amount;
+          setPaymentOptions(card, newCardFunds);
+     }
 }
