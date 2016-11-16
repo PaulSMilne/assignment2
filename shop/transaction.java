@@ -15,25 +15,19 @@ public class Transaction{
           this.card = defaultCard;
      }
 
-     public BankCard getDefaultCard() {return this.card;}
+     public BankCard findDefaultCard(HashMap<BankCard, Double> paymentOptions){
+          for (BankCard card : paymentOptions.keySet()){
+               if (card.defaultCard == true){
+                    return card;
+               } 
+          } return null;
+     }
+
+     public BankCard getDefaultCard() { return this.card; }
 
 // OVERLOAD makeTransaction method to take a bank card or 
 // to use the default card if no card is passed in 
 // the method signature.
-
-     public void makeTransaction(BankCard card, double amount, TransactionType transaction){
-
-          if (transaction == TransactionType.SALE){
-
-               shop.updateSales(amount);
-               customer.makePayment(card, amount);
-
-          } else if (transaction == TransactionType.REFUND) {
-
-               shop.updateRefunds(amount);
-               customer.receiveRefund(card, amount);
-          }
-     }
 
      public void makeTransaction(double amount, TransactionType transaction){
 
@@ -51,12 +45,18 @@ public class Transaction{
           }
      }
 
-     public BankCard findDefaultCard(HashMap<BankCard, Double> paymentOptions){
-          for (BankCard card : paymentOptions.keySet()){
-               if (card.defaultCard == true){
-                    return card;
-               }
-               
-          }return null;
+     public void makeTransaction(BankCard card, double amount, TransactionType transaction){
+
+          if (transaction == TransactionType.SALE){
+
+               shop.updateSales(amount);
+               customer.makePayment(card, amount);
+
+          } else if (transaction == TransactionType.REFUND) {
+
+               shop.updateRefunds(amount);
+               customer.receiveRefund(card, amount);
+          }
      }
+
 }
