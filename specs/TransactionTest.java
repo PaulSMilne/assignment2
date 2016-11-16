@@ -16,9 +16,8 @@ public class TransactionTest {
      @Before
      public void Before(){
 
+          customer = new Customer("Zippy T. Pinhead");
           shop = new Shop("BearsRUrsus");
-
-          customer = new Customer("Zippy");
           
           card1 = new BankCard("Barclays", CardType.VISA_DEBIT);
           card1.makeDefault();
@@ -27,7 +26,7 @@ public class TransactionTest {
           customer.setPaymentOptions(card1, 10000.00);
           customer.setPaymentOptions(card2, 3000.00);
           
-          transaction = new Transaction(1, customer, shop);
+          transaction = new Transaction(customer, shop);
     }
 
      // @Test

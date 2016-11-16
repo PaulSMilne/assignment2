@@ -13,38 +13,36 @@ public class Customer{
           this.totalFunds = 0;
      }
 
-     public String getName(){
-          return this.name;
-     }
+     public String getName() {return this.name;}
+
+     public HashMap<BankCard, Double> getPaymentOptions() {return this.paymentOptions;}
 
      public void setPaymentOptions(BankCard card, double cardFunds){
           Double availableFunds = new Double(cardFunds);
           paymentOptions.put(card, availableFunds);
      }
 
-     public HashMap<BankCard, Double> getPaymentOptions(){
-          return this.paymentOptions;
-     }
-
      public Double getTotalFunds(){
           HashMap<BankCard, Double> currentCards = getPaymentOptions();
           Double sum = new Double(0.00);
-          for (Double cardSum : currentCards.values()){
-               sum += cardSum;
-          }
+          for ( Double cardSum : currentCards.values() ) { sum += cardSum; }
           return sum;
      }
 
-     public void makePayment(BankCard card, double amount){
+     public Double getCurrentCardFunds(BankCard card){
           HashMap<BankCard, Double> paymentOptions = getPaymentOptions();
           Double currentCardFunds = paymentOptions.get(card);
+          return currentCardFunds;
+     }
+
+     public void makePayment(BankCard card, double amount){
+          Double currentCardFunds = getCurrentCardFunds(card);
           Double newCardFunds = currentCardFunds - amount;
           setPaymentOptions(card, newCardFunds);
      }
 
      public void receiveRefund(BankCard card, double amount){
-          HashMap<BankCard, Double> paymentOptions = getPaymentOptions();
-          Double currentCardFunds = paymentOptions.get(card);
+          Double currentCardFunds = getCurrentCardFunds(card);
           Double newCardFunds = currentCardFunds + amount;
           setPaymentOptions(card, newCardFunds);
      }
