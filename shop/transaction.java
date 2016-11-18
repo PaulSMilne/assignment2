@@ -42,6 +42,7 @@ public class Transaction{
                shop.updateRefunds(amount);
                shop.updateStock(purchase, 1);
                customer.receiveRefund(card, amount);
+               customer.removeFromBasket(purchase);
           }
      }
 
@@ -52,11 +53,12 @@ public class Transaction{
                shop.sellItem(purchase);
                customer.makePayment(card, amount);
                customer.addToBasket(purchase);
-               
+
           } else if (transaction == TransactionType.REFUND) {
                shop.updateRefunds(amount);
                shop.updateStock(purchase, 1);
                customer.receiveRefund(card, amount);
+               customer.removeFromBasket(purchase);
           }
      }
 
