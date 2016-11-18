@@ -4,18 +4,18 @@ import java.util.*;
 public class Customer{
 
      private String name;
-     private HashMap<BankCard, Double> paymentOptions;
+     private HashMap<Payable, Double> paymentOptions;
      private ArrayList<StockItem> basket;
 
      public Customer(String name){
           this.name = name;
-          this.paymentOptions = new HashMap<BankCard, Double>();
+          this.paymentOptions = new HashMap<Payable, Double>();
           this.basket = new ArrayList<StockItem>();
      }
 
      public String getName() {return this.name;}
 
-     public HashMap<BankCard, Double> getPaymentOptions() {return this.paymentOptions;}
+     public HashMap<Payable, Double> getPaymentOptions() {return this.paymentOptions;}
 
      public ArrayList<StockItem> getBasket() { return this.basket; }
 
@@ -29,33 +29,33 @@ public class Customer{
      }
 
 
-     public void setPaymentOptions(BankCard card, double cardFunds){
+     public void setPaymentOptions(Payable paymentMethod, double cardFunds){
           Double availableFunds = new Double(cardFunds);
-          paymentOptions.put(card, availableFunds);
+          paymentOptions.put(paymentMethod, availableFunds);
      }
 
      public Double getTotalFunds(){
-          HashMap<BankCard, Double> currentCards = getPaymentOptions();
+          HashMap<Payable, Double> currentCards = getPaymentOptions();
           Double sum = new Double(0.00);
           for ( Double cardSum : currentCards.values() ) { sum += cardSum; }
           return sum;
      }
 
-     public Double getCurrentCardFunds(BankCard card){
-          HashMap<BankCard, Double> paymentOptions = getPaymentOptions();
-          Double currentCardFunds = paymentOptions.get(card);
+     public Double getCurrentCardFunds(Payable paymentMethod){
+          HashMap<Payable, Double> paymentOptions = getPaymentOptions();
+          Double currentCardFunds = paymentOptions.get(paymentMethod);
           return currentCardFunds;
      }
 
-     public void makePayment(BankCard card, double amount){
-          Double currentCardFunds = getCurrentCardFunds(card);
+     public void makePayment(Payable paymentMethod, double amount){
+          Double currentCardFunds = getCurrentCardFunds(paymentMethod);
           currentCardFunds -= amount;
-          setPaymentOptions(card, currentCardFunds);
+          setPaymentOptions(paymentMethod, currentCardFunds);
      }
 
-     public void receiveRefund(BankCard card, double amount){
-          Double currentCardFunds = getCurrentCardFunds(card);
+     public void receiveRefund(Payable paymentMethod, double amount){
+          Double currentCardFunds = getCurrentCardFunds(paymentMethod);
           currentCardFunds += amount;
-          setPaymentOptions(card, currentCardFunds);
+          setPaymentOptions(paymentMethod, currentCardFunds);
      }
 }

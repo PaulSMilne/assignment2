@@ -27,7 +27,7 @@ public class CustomerTest {
 
      @Test
      public void canAddCardToPaymentOptions(){
-          HashMap<BankCard, Double> currentCards = customer.getPaymentOptions();
+          HashMap<Payable, Double> currentCards = customer.getPaymentOptions();
           assertEquals(2, currentCards.size());
      }
 

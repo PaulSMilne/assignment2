@@ -33,6 +33,6 @@ public class BankCardTest {
      @Test
      public void canChangeDefaultState(){
           bankCard.makeDefault();
-          assertEquals(true, bankCard.defaultCard);
+          assertEquals(true, bankCard.defaultState);
      }
 }

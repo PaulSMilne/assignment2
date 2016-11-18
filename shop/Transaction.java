@@ -5,59 +5,60 @@ public class Transaction{
 
      private Customer customer;
      private Shop shop;
-     private BankCard card;
+     private Payable paymentMethod;
 
      public Transaction(Customer customer, Shop shop){
-          HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
-          BankCard defaultCard = findDefaultCard(paymentOptions);
+          HashMap<Payable, Double> paymentOptions = customer.getPaymentOptions();
+          Payable defaultPaymentMethod = findDefaultPaymentMethod(paymentOptions);
           this.customer = customer;
           this.shop = shop;
-          this.card = defaultCard;
+          this.paymentMethod = defaultPaymentMethod;
      }
 
-     public BankCard findDefaultCard(HashMap<BankCard, Double> paymentOptions){
-          for (BankCard card : paymentOptions.keySet()){
-               if (card.defaultCard == true){
-                    return card;
+     public Payable findDefaultPaymentMethod(HashMap<Payable, Double> paymentOptions){
+          for (Payable paymentMethod : paymentOptions.keySet()){
+               boolean defaultState = paymentMethod.getDefaultState();
+               if (defaultState == true){
+                    return paymentMethod;
                } 
           } return null;
      }
 
-     public BankCard getDefaultCard() { return this.card; }
+     public Payable getDefaultPaymentMethod() { return this.paymentMethod; }
 
-// OVERLOAD makeTransaction method to take a bank card or 
-// to use the default card if no card is passed in 
+// OVERLOAD makeTransaction method to take a payment method or 
+// to use the default payment method if no payment method is passed in 
 // the method signature.
 
      public void makeTransaction(StockItem purchase, double amount, TransactionType transaction){
-          BankCard card = getDefaultCard();
+          Payable paymentMethod = getDefaultPaymentMethod();
 
           if (transaction == TransactionType.SALE){
                shop.updateSales(amount);
                shop.sellItem(purchase);
-               customer.makePayment(card, amount);
+               customer.makePayment(paymentMethod, amount);
                customer.addToBasket(purchase);
 
           } else if (transaction == TransactionType.REFUND) {
                shop.updateRefunds(amount);
                shop.updateStock(purchase, 1);
-               customer.receiveRefund(card, amount);
+               customer.receiveRefund(paymentMethod, amount);
                customer.removeFromBasket(purchase);
           }
      }
 
-     public void makeTransaction(BankCard card, StockItem purchase, double amount, TransactionType transaction){
+     public void makeTransaction(Payable paymentMethod, StockItem purchase, double amount, TransactionType transaction){
 
           if (transaction == TransactionType.SALE){
                shop.updateSales(amount);
                shop.sellItem(purchase);
-               customer.makePayment(card, amount);
+               customer.makePayment(paymentMethod, amount);
                customer.addToBasket(purchase);
 
           } else if (transaction == TransactionType.REFUND) {
                shop.updateRefunds(amount);
                shop.updateStock(purchase, 1);
-               customer.receiveRefund(card, amount);
+               customer.receiveRefund(paymentMethod, amount);
                customer.removeFromBasket(purchase);
           }
      }

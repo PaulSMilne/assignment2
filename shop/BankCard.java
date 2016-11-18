@@ -1,16 +1,16 @@
 package shop;
 //import java.util.*;
 
-public class BankCard {
+public class BankCard implements Payable{
      
      private String bank;
      private CardType cardType;
-     public boolean defaultCard;
+     public boolean defaultState;
 
      public BankCard(String bank, CardType cardType){
           this.bank = bank;
           this.cardType = cardType;
-          this.defaultCard = false;
+          this.defaultState = false;
      }
 
      public String getBank(){
@@ -21,9 +21,14 @@ public class BankCard {
           return this.cardType;
      }
 
-     public void makeDefault(){
-          this.defaultCard = true;
+     public boolean getDefaultState(){
+          return this.defaultState;
      }
+
+     public void makeDefault(){
+          this.defaultState = true;
+     }
+
 
 
 

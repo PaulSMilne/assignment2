@@ -34,27 +34,80 @@ public class TransactionTest {
 
 
      @Test
-     public void saleTransfersCustomerFundsFromParticularCardToShop(){
+     public void canExtractDefaultCardFromPaymentOptions(){
 
-          Double amount1 = new Double(499.99);
-          Double amount2 = new Double(1499.99);
-
-          transaction.makeTransaction(card1, bear, amount1, TransactionType.SALE);
-          transaction.makeTransaction(card2, bear, amount2, TransactionType.SALE);
-
-          HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
-          Double newFunds = paymentOptions.get(card1);
-          assertEquals(9500.01, newFunds, 0);
-
-          Double customerNewFunds = customer.getTotalFunds();
-          assertEquals(11000.02, customerNewFunds, 0);
-
-          Double salesFigures = shop.getSales();
-          assertEquals(1999.98, salesFigures, 0);
-
-          Double shopFunds = shop.getIncomeReport();
-          assertEquals(1999.98, shopFunds, 0);
+          HashMap<Payable, Double> paymentOptions = customer.getPaymentOptions();
+          Payable useThisCard = transaction.findDefaultPaymentMethod(paymentOptions);
+          boolean state = useThisCard.getDefaultState();
+          assertEquals(true, state);
      }
+
+     @Test
+     public void defaultCardDefaultStateIsTrue(){
+          Payable useThisCard = transaction.getDefaultPaymentMethod();
+          boolean state = useThisCard.getDefaultState();
+          assertEquals(true, state);
+     }
+
+     // @Test
+     // public void testIfCard1IsDefault(){
+     //      assertEquals(true, card1.defaultState);
+     // }
+
+     // @Test
+     // public void testIfCard2IsNotDefault(){
+     //      assertEquals(false, card2.defaultState);
+     // }
+
+     // @Test
+     // public void makeSaleUseDefaultCard(){
+
+     //      Payable card = transaction.getDefaultPaymentMethod();
+
+     //      Double amount1 = new Double(499.99);
+
+     //      transaction.makeTransaction(bear, amount1, TransactionType.SALE);
+
+     //      HashMap<Payable, Double> paymentOptions = customer.getPaymentOptions();
+     //      Double newFunds = paymentOptions.get(card);
+
+     //      assertEquals(9500.01, newFunds, 0);
+     // }
+
+     // @Test
+     // public void makeSaleUsesOptionalCard(){
+
+     //      Double amount1 = new Double(499.99);
+
+     //      transaction.makeTransaction(card2, bear, amount1, TransactionType.SALE);
+
+     //      HashMap<Payable, Double> paymentOptions = customer.getPaymentOptions();
+     //      Double newFunds = paymentOptions.get(card2);
+
+     //      assertEquals(2500.01, newFunds, 0);
+     // }
+          // @Test
+     // public void saleTransfersCustomerFundsFromParticularCardToShop(){
+
+     //      Double amount1 = new Double(499.99);
+     //      Double amount2 = new Double(1499.99);
+
+     //      transaction.makeTransaction(card1, bear, amount1, TransactionType.SALE);
+     //      transaction.makeTransaction(card2, bear, amount2, TransactionType.SALE);
+
+     //      HashMap<Payable, Double> paymentOptions = customer.getPaymentOptions();
+     //      Double newFunds = paymentOptions.get(card1);
+     //      assertEquals(9500.01, newFunds, 0);
+
+     //      Double customerNewFunds = customer.getTotalFunds();
+     //      assertEquals(11000.02, customerNewFunds, 0);
+
+     //      Double salesFigures = shop.getSales();
+     //      assertEquals(1999.98, salesFigures, 0);
+
+     //      Double shopFunds = shop.getIncomeReport();
+     //      assertEquals(1999.98, shopFunds, 0);
+     // }
 
      // @Test
      // public void refundPutsMoneyOnNominatedCard(){
@@ -63,7 +116,7 @@ public class TransactionTest {
 
      //      transaction.makeTransaction(card1, bear, amount1, TransactionType.REFUND);
 
-     //      HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
+     //      HashMap<Payable, Double> paymentOptions = customer.getPaymentOptions();
      //      Double card1Funds = paymentOptions.get(card1);
 
      //      assertEquals(10499.99, card1Funds, 0);
@@ -82,85 +135,33 @@ public class TransactionTest {
      //      assertEquals(499.99, refundFigures, 0);
      // }
 
-     @Test
-     public void refundTakesFromTotalShopFunds(){
-
-          Double amount1 = new Double(499.99);
-          Double amount2 = new Double(1499.99);
-
-          transaction.makeTransaction(card1, bear, amount1, TransactionType.SALE);
-          transaction.makeTransaction(card2, bear, amount2, TransactionType.SALE);
-
-          transaction.makeTransaction(card1, bear, amount1, TransactionType.REFUND);
-
-          Double shopFunds = shop.getIncomeReport();
-
-          assertEquals(1499.99, shopFunds, 0);
-
-     }
-
-     @Test
-     public void testIfCard1IsDefault(){
-          assertEquals(true, card1.defaultCard);
-     }
-
-     @Test
-     public void testIfCard2IsNotDefault(){
-          assertEquals(false, card2.defaultCard);
-     }
-
-     @Test
-     public void canExtractDefaultCardFromPaymentOptions(){
-
-          HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
-          BankCard useThisCard = transaction.findDefaultCard(paymentOptions);
-
-          assertEquals(useThisCard.defaultCard, true);
-     }
-
-     @Test
-     public void cardInstanceVariableIsTrue(){
-          BankCard useThisCard = transaction.getDefaultCard();
-          assertEquals(true, useThisCard.defaultCard);
-     }
-
-     @Test
-     public void makeSaleUsesDefaultCard(){
-
-          BankCard card = transaction.getDefaultCard();
-
-          Double amount1 = new Double(499.99);
-
-          transaction.makeTransaction(bear, amount1, TransactionType.SALE);
-
-          HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
-          Double newFunds = paymentOptions.get(card);
-
-          assertEquals(9500.01, newFunds, 0);
-     }
-
-     @Test
-     public void makeSaleUsesOptionalCard(){
-
-          Double amount1 = new Double(499.99);
-
-          transaction.makeTransaction(card2, bear, amount1, TransactionType.SALE);
-
-          HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
-          Double newFunds = paymentOptions.get(card2);
-
-          assertEquals(2500.01, newFunds, 0);
-     }
      // @Test
+     // public void refundTakesFromTotalShopFunds(){
+
+     //      Double amount1 = new Double(499.99);
+     //      Double amount2 = new Double(1499.99);
+
+     //      transaction.makeTransaction(card1, bear, amount1, TransactionType.SALE);
+     //      transaction.makeTransaction(card2, bear, amount2, TransactionType.SALE);
+
+     //      transaction.makeTransaction(card1, bear, amount1, TransactionType.REFUND);
+
+     //      Double shopFunds = shop.getIncomeReport();
+
+     //      assertEquals(1499.99, shopFunds, 0);
+
+     // }
+
+    // @Test
      // public void makeRefundUsesDefaultCard(){
 
-     //      BankCard card = transaction.getDefaultCard();
+     //      Payable card = transaction.getDefaultCard();
 
      //      Double amount1 = new Double(499.99);
 
      //      transaction.makeTransaction(bear, amount1, TransactionType.REFUND);
 
-     //      HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
+     //      HashMap<Payable, Double> paymentOptions = customer.getPaymentOptions();
      //      Double newFunds = paymentOptions.get(card);
 
      //      assertEquals(10499.99, newFunds, 0);
@@ -173,20 +174,20 @@ public class TransactionTest {
 
      //      transaction.makeTransaction(card2, bear, amount1, TransactionType.REFUND);
 
-     //      HashMap<BankCard, Double> paymentOptions = customer.getPaymentOptions();
+     //      HashMap<Payable, Double> paymentOptions = customer.getPaymentOptions();
      //      Double newFunds = paymentOptions.get(card2);
 
      //      assertEquals(3499.99, newFunds, 0);
      // }
 
-     @Test 
-     public void makeSaleReducesStockInStore(){
-          Double amount1 = new Double(499.99);
-          transaction.makeTransaction(bear, amount1, TransactionType.SALE);
-          HashMap<StockItem, Integer> itemsInStock = shop.getStock();
-          int dancingBearsInStock = itemsInStock.get(bear);
-          assertEquals(1, dancingBearsInStock);          
-     }
+     // @Test 
+     // public void makeSaleReducesStockInStore(){
+     //      Double amount1 = new Double(499.99);
+     //      transaction.makeTransaction(bear, amount1, TransactionType.SALE);
+     //      HashMap<StockItem, Integer> itemsInStock = shop.getStock();
+     //      int dancingBearsInStock = itemsInStock.get(bear);
+     //      assertEquals(1, dancingBearsInStock);          
+     // }
 
      // @Test
      // public void makeRefundIncreaseStockInStore(){
@@ -197,22 +198,22 @@ public class TransactionTest {
      //     assertEquals(3, dancingBearsInStock);           
      // }
 
-     @Test
-     public void makeSaleAddsStockToBasket(){
-          Double amount1 = new Double(499.99);
-          transaction.makeTransaction(bear, amount1, TransactionType.SALE);
-          ArrayList<StockItem> currentBasket = customer.getBasket();
-          int amountInBasket = currentBasket.size();
-          assertEquals(1, amountInBasket);
-     }
+     // @Test
+     // public void makeSaleAddsStockToBasket(){
+     //      Double amount1 = new Double(499.99);
+     //      transaction.makeTransaction(bear, amount1, TransactionType.SALE);
+     //      ArrayList<StockItem> currentBasket = customer.getBasket();
+     //      int amountInBasket = currentBasket.size();
+     //      assertEquals(1, amountInBasket);
+     // }
 
-     @Test
-     public void makeRefundTakesStockFromBasket(){
-          Double amount1 = new Double(499.99);
-          transaction.makeTransaction(bear, amount1, TransactionType.SALE);
-          transaction.makeTransaction(bear, amount1, TransactionType.REFUND);
-          ArrayList<StockItem> currentBasket = customer.getBasket();
-          int amountInBasket = currentBasket.size();
-          assertEquals(0, amountInBasket);
-     }
+     // @Test
+     // public void makeRefundTakesStockFromBasket(){
+     //      Double amount1 = new Double(499.99);
+     //      transaction.makeTransaction(bear, amount1, TransactionType.SALE);
+     //      transaction.makeTransaction(bear, amount1, TransactionType.REFUND);
+     //      ArrayList<StockItem> currentBasket = customer.getBasket();
+     //      int amountInBasket = currentBasket.size();
+     //      assertEquals(0, amountInBasket);
+     // }
 }
