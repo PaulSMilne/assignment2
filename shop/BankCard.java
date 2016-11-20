@@ -1,7 +1,7 @@
 package shop;
 //import java.util.*;
 
-public class BankCard implements Payable{
+public class BankCard extends Card{
      
      private String bank;
      private CardType cardType;

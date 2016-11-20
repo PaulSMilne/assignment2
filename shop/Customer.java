@@ -49,6 +49,7 @@ public class Customer{
 
      public Double getCurrentCardFunds(Payable paymentMethod){
           HashMap<Payable, Double> paymentOptions = getPaymentOptions();
+          //need to look through the payment options and get the values for the credit cards, then add that amount to the bank account.
           Double currentCardFunds = paymentOptions.get(paymentMethod);
           return currentCardFunds;
      }
