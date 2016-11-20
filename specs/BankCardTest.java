@@ -14,11 +14,11 @@ public class BankCardTest {
      }
 
      @Test
-     public void canGetNameOfBank(){
+     public void canGetNameOfLender(){
 
-          String bankName = bankCard.getBank();
+          String lenderName = bankCard.getLender();
 
-          assertEquals("Barclays", bankName);
+          assertEquals("Barclays", lenderName);
      }
 
      @Test

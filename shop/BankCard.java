@@ -3,31 +3,21 @@ package shop;
 
 public class BankCard extends Card{
      
-     private String bank;
-     private CardType cardType;
-     public boolean defaultState;
+     private String lender;
+     //private CardType cardType;
+     //public boolean defaultState;
 
-     public BankCard(String bank, CardType cardType){
-          this.bank = bank;
+     public BankCard(String lender, CardType cardType){
+          this.lender = lender;
           this.cardType = cardType;
           this.defaultState = false;
      }
 
-     public String getBank(){
-          return this.bank;
+     public String getLender(){
+          return this.lender;
      }
 
-     public CardType getCardType(){
-          return this.cardType;
-     }
 
-     public boolean getDefaultState(){
-          return this.defaultState;
-     }
-
-     public void makeDefault(){
-          this.defaultState = true;
-     }
 
 
 
