@@ -38,3 +38,11 @@ after having tinkered to my satisfaction with my MVP code I have proceeded to ad
 I have created a StockItem class and refactored the Shop class to include a hashmap of stock items. 
 
 I wrote two new methods that tested out okay, to get the what is in the current stock hashmap, and to add items to the stock hashmap.
+
+**Next Sunday (20 Nov)
+
+I got into a real guddle last week with my git commits so this readme looks to be not right up to date. Anyway, after doing the stock thread and turning that in as my final homework, on Friday I worked on creating a "Payable" interface so I could designate emoney payments as well as cards. 
+
+Now I'm looking to create a separate Debit Card and Credit Card classes that do different things as far as their available funds are concerned. The credit card will continue to be as normal, but the debit card and emoney will instead get their values from a new bank account instance variable.
+
+I've created a new git branch to do this work on.
