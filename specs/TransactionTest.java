@@ -18,7 +18,7 @@ public class TransactionTest {
      @Before
      public void Before(){
 
-          customer = new Customer("Zippy T. Pinhead");
+          customer = new Customer("Zippy T. Pinhead", 10000.00);
           shop = new Shop("BearsRUrsus");
           bear = new StockItem("Dancing Bear");
           shop.addStock(bear, 2);

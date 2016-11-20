@@ -18,7 +18,7 @@ public class CustomerTest {
           card1 = new BankCard("Barclays", CardType.VISA_DEBIT);
           card2 = new BankCard("Bank of Scotland", CardType.MASTERCARD_CREDIT);
           stockItem = new StockItem("Dancing Bear");
-          customer = new Customer("Zippy");
+          customer = new Customer("Zippy", 10000.00);
           totalFunds = 0;
           customer.setPaymentOptions(card1, 100.00);
           customer.setPaymentOptions(card2, 200.00);
