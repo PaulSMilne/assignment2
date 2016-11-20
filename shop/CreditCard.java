@@ -1,13 +1,13 @@
 package shop;
 //import java.util.*;
 
-public class BankCard extends Card{
+public class CreditCard extends Card{
      
      private String lender;
      //private CardType cardType;
      //public boolean defaultState;
 
-     public BankCard(String lender, CardType cardType){
+     public CreditCard(String lender, CardType cardType){
           this.lender = lender;
           this.cardType = cardType;
           this.defaultState = false;
@@ -16,10 +16,5 @@ public class BankCard extends Card{
      public String getLender(){
           return this.lender;
      }
-
-
-
-
-
 
 }

@@ -8,8 +8,8 @@ import shop.*;
 public class TransactionTest {
      Customer customer;
      Shop shop;
-     BankCard card1;
-     BankCard card2;
+     CreditCard card1;
+     CreditCard card2;
      StockItem bear;
      Emoney emoney1;
 
@@ -23,8 +23,8 @@ public class TransactionTest {
           bear = new StockItem("Dancing Bear");
           shop.addStock(bear, 2);
           
-          card1 = new BankCard("Barclays", CardType.VISA_DEBIT);
-          card2 = new BankCard("Bank of Scotland", CardType.MASTERCARD_CREDIT);
+          card1 = new CreditCard("Barclays", CardType.VISA_CREDIT);
+          card2 = new CreditCard("Bank of Scotland", CardType.MASTERCARD_CREDIT);
           emoney1 = new Emoney("Paypal");
           emoney1.makeDefault();
           

@@ -7,16 +7,16 @@ import shop.*;
 
 public class CustomerTest {
 
-     BankCard card1;
-     BankCard card2;
+     CreditCard card1;
+     CreditCard card2;
      Customer customer;
      double totalFunds;
      StockItem stockItem;
 
      @Before
      public void before(){
-          card1 = new BankCard("Barclays", CardType.VISA_DEBIT);
-          card2 = new BankCard("Bank of Scotland", CardType.MASTERCARD_CREDIT);
+          card1 = new CreditCard("Barclays", CardType.VISA_CREDIT);
+          card2 = new CreditCard("Bank of Scotland", CardType.MASTERCARD_CREDIT);
           stockItem = new StockItem("Dancing Bear");
           customer = new Customer("Zippy", 10000.00);
           totalFunds = 0;

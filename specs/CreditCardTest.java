@@ -4,19 +4,19 @@ import shop.*;
 //import behaviours.*;
 
 
-public class BankCardTest {
+public class CreditCardTest {
 
-     BankCard bankCard;
+     CreditCard card;
 
      @Before
      public void before(){
-          bankCard = new BankCard("Barclays", CardType.VISA_DEBIT);
+          card = new CreditCard("Barclays", CardType.VISA_CREDIT);
      }
 
      @Test
      public void canGetNameOfLender(){
 
-          String lenderName = bankCard.getLender();
+          String lenderName = card.getLender();
 
           assertEquals("Barclays", lenderName);
      }
@@ -24,15 +24,15 @@ public class BankCardTest {
      @Test
      public void canGetCardType(){
 
-          CardType type = bankCard.getCardType();
+          CardType type = card.getCardType();
 
-          assertEquals(CardType.VISA_DEBIT, type);
+          assertEquals(CardType.VISA_CREDIT, type);
      }
 
 
      @Test
      public void canChangeDefaultState(){
-          bankCard.makeDefault();
-          assertEquals(true, bankCard.defaultState);
+          card.makeDefault();
+          assertEquals(true, card.defaultState);
      }
 }
