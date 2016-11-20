@@ -5,21 +5,21 @@ public class Customer{
 
      private String name;
      private HashMap<Payable, Double> paymentOptions;
-     private double acct;
+     //private double acct;
      private ArrayList<StockItem> basket;
 
-     public Customer(String name, double acct){
+     public Customer(String name){
           this.name = name;
           this.paymentOptions = new HashMap<Payable, Double>();
           this.basket = new ArrayList<StockItem>();
-          this.acct = acct;
+          //this.acct = acct;
      }
 
      public String getName() {return this.name;}
 
-     public double getAcct() {return this.acct;}
+     //public double getAcct() {return this.acct;}
 
-     public void setAcct(double amount) {this.acct = amount;}
+     //public void setAcct(double amount) {this.acct = amount;}
 
      public HashMap<Payable, Double> getPaymentOptions() {return this.paymentOptions;}
 
