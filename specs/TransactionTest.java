@@ -11,6 +11,7 @@ public class TransactionTest {
      BankCard card1;
      BankCard card2;
      StockItem bear;
+     Emoney emoney1;
 
      Transaction transaction;
 
@@ -23,18 +24,20 @@ public class TransactionTest {
           shop.addStock(bear, 2);
           
           card1 = new BankCard("Barclays", CardType.VISA_DEBIT);
-          card1.makeDefault();
           card2 = new BankCard("Bank of Scotland", CardType.MASTERCARD_CREDIT);
+          emoney1 = new Emoney("Paypal");
+          emoney1.makeDefault();
           
           customer.setPaymentOptions(card1, 10000.00);
           customer.setPaymentOptions(card2, 3000.00);
+          customer.setPaymentOptions(emoney1, 10000.00);
           
           transaction = new Transaction(customer, shop);
     }
 
 
      @Test
-     public void canExtractDefaultCardFromPaymentOptions(){
+     public void canExtractDefaultOptionFromPaymentOptions(){
 
           HashMap<Payable, Double> paymentOptions = customer.getPaymentOptions();
           Payable useThisCard = transaction.findDefaultPaymentMethod(paymentOptions);
@@ -49,65 +52,67 @@ public class TransactionTest {
           assertEquals(true, state);
      }
 
-     // @Test
-     // public void testIfCard1IsDefault(){
-     //      assertEquals(true, card1.defaultState);
-     // }
+     @Test
+     public void testIfPaypalIsDefault(){
+          boolean state = emoney1.getDefaultState();
+          assertEquals(true, state);
+     }
 
-     // @Test
-     // public void testIfCard2IsNotDefault(){
-     //      assertEquals(false, card2.defaultState);
-     // }
+     @Test
+     public void testIfCard1IsNotDefault(){
+          boolean state = card1.getDefaultState();
+          assertEquals(false, state);
+     }
 
-     // @Test
-     // public void makeSaleUseDefaultCard(){
+     @Test
+     public void makeSaleUseDefaultCard(){
 
-     //      Payable card = transaction.getDefaultPaymentMethod();
+          Payable defaultPayment = transaction.getDefaultPaymentMethod();
 
-     //      Double amount1 = new Double(499.99);
+          Double amount1 = new Double(499.99);
 
-     //      transaction.makeTransaction(bear, amount1, TransactionType.SALE);
+          transaction.makeTransaction(bear, amount1, TransactionType.SALE);
 
-     //      HashMap<Payable, Double> paymentOptions = customer.getPaymentOptions();
-     //      Double newFunds = paymentOptions.get(card);
+          HashMap<Payable, Double> paymentOptions = customer.getPaymentOptions();
+          Double newFunds = paymentOptions.get(defaultPayment);
 
-     //      assertEquals(9500.01, newFunds, 0);
-     // }
+          assertEquals(9500.01, newFunds, 0);
+     }
 
-     // @Test
-     // public void makeSaleUsesOptionalCard(){
+     @Test
+     public void makeSaleUsesOptionalCard(){
 
-     //      Double amount1 = new Double(499.99);
+          Double amount1 = new Double(499.99);
 
-     //      transaction.makeTransaction(card2, bear, amount1, TransactionType.SALE);
+          transaction.makeTransaction(card2, bear, amount1, TransactionType.SALE);
 
-     //      HashMap<Payable, Double> paymentOptions = customer.getPaymentOptions();
-     //      Double newFunds = paymentOptions.get(card2);
+          HashMap<Payable, Double> paymentOptions = customer.getPaymentOptions();
+          Double newFunds = paymentOptions.get(card2);
 
-     //      assertEquals(2500.01, newFunds, 0);
-     // }
-          // @Test
-     // public void saleTransfersCustomerFundsFromParticularCardToShop(){
+          assertEquals(2500.01, newFunds, 0);
+     }
+          @Test
+     public void saleTransfersCustomerFundsFromParticularCardToShop(){
 
-     //      Double amount1 = new Double(499.99);
-     //      Double amount2 = new Double(1499.99);
+          Double amount1 = new Double(499.99);
+          Double amount2 = new Double(1499.99);
 
-     //      transaction.makeTransaction(card1, bear, amount1, TransactionType.SALE);
-     //      transaction.makeTransaction(card2, bear, amount2, TransactionType.SALE);
+          transaction.makeTransaction(bear, amount1, TransactionType.SALE);
+          transaction.makeTransaction(card2, bear, amount2, TransactionType.SALE);
 
-     //      HashMap<Payable, Double> paymentOptions = customer.getPaymentOptions();
-     //      Double newFunds = paymentOptions.get(card1);
-     //      assertEquals(9500.01, newFunds, 0);
+          HashMap<Payable, Double> paymentOptions = customer.getPaymentOptions();
+          Double newFunds = paymentOptions.get(card2);
+          assertEquals(1500.01, newFunds, 0);
 
-     //      Double customerNewFunds = customer.getTotalFunds();
-     //      assertEquals(11000.02, customerNewFunds, 0);
+          Double customerNewFunds = customer.getTotalFunds();
+          assertEquals(21000.02, customerNewFunds, 0);
 
-     //      Double salesFigures = shop.getSales();
-     //      assertEquals(1999.98, salesFigures, 0);
+          // Double salesFigures = shop.getSales();
+          // assertEquals(1999.98, salesFigures, 0);
 
-     //      Double shopFunds = shop.getIncomeReport();
-     //      assertEquals(1999.98, shopFunds, 0);
-     // }
+          // Double shopFunds = shop.getIncomeReport();
+          // assertEquals(1999.98, shopFunds, 0);
+     }
 
      // @Test
      // public void refundPutsMoneyOnNominatedCard(){
