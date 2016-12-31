@@ -1,5 +1,13 @@
 #JAVA PROJECT
 
+##Initial Brief
+
+###Shop
+
+**Goal:** Practice OO modelling in Java (unit tests, no UI)
+
+You are required to build an app that allows a Shop to sell goods to a Customer. Stock and items are not important.
+
 ##MVP
 
 The Shop must be able to:
