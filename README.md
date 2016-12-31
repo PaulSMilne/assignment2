@@ -1,6 +1,6 @@
-*JAVA PROJECT
+#JAVA PROJECT
 
-** MVP
+##MVP
 
 The Shop must be able to:
 
@@ -14,11 +14,11 @@ Have a collection of possible Payment Methods: CreditCard (default), DebitCard
 Be able to select a Payment Method to pay at any Shop
 Be able to select a Payment Method to recieve a refund onto a given Payment Method
 
-**Project Extensions
+##Project Extensions
 
 Add stock tracking
 
-**Prioritise Requirements
+##Prioritise Requirements
 
 * Customers
  * Have a total amount to spend, split between debit and credit limits
@@ -39,9 +39,9 @@ Add stock tracking
    * quantity of each item in stock
    * stock decreases with sales, can also add stock
 
-**Diary
+##Diary
 
-***Sunday evening:
+###Sunday evening:
 
 Have spent my time yesterday and today planning and drawing diagrams, and reading up on interfaces, enums and hashmaps.
 
@@ -49,7 +49,7 @@ Tonight started coding some simple getters and setters, using Sublime rather tha
 
 I'm using an Enum for the CardType, eg VISA_DEBIT("Visa Debit Card"). The Card gets initialised with a bank name and  card type. The Customer adds a "limit" which will do a calculation with spending and receiving refunds to work out how many funds are available. That's the theory anyway.
 
-***Tuesday afternoon
+###Tuesday afternoon
 
 Doing the default card was a multi step process. 
 
@@ -60,19 +60,19 @@ Doing the default card was a multi step process.
 5. In my test I newed up the customer and his/her payment options and cards first, then when I created the new transaction there were values for this method to work with. 
 6. Then I overloaded the makeTransaction method to take two different strings of parameters. If it includes a card, the card is used in the transaction. If it doesn't include a card, it finds uses this.card in the class constructure which is the true card in the hashmap of payment methods.
 
-***Wednesday morning
+###Wednesday morning
 
 I'm revisiting the code I've done to see if I can move some of the heavy lifting from the Transaction class to the Customer class.
 
 Created a refactor branch to investigate possible reworking of my code.
 
-***Wednesday elevenses
+###Wednesday elevenses
 
 Have refactored the code to move the card maths from the transaction page to the customer page. The transaction page now calls the customer method which makes payments (takes money away from) or receives refunds (adds money to) from/to a particular card. 
 
 Then I further refactored to give the work of finding the current funds on a card to a separate customer method.
 
-***Wednesday lunchtime
+###Wednesday lunchtime
 
 after having tinkered to my satisfaction with my MVP code I have proceeded to add an element of stock control as per the suggestion of the brief.
 
