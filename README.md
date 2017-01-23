@@ -88,7 +88,7 @@ I have created a StockItem class and refactored the Shop class to include a hash
 
 I wrote two new methods that tested out okay, to get the what is in the current stock hashmap, and to add items to the stock hashmap.
 
-**Next Sunday (20 Nov)
+###Next Sunday (20 Nov)
 
 I got into a real guddle last week with my git commits so this readme looks to be not right up to date. Anyway, after doing the stock thread and turning that in as my final homework, on Friday I worked on creating a "Payable" interface so I could designate emoney payments as well as cards. 
 
